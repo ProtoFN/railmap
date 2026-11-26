@@ -1,0 +1,8 @@
+[package]
+name = "railmap"
+version = "0.1.0"
+edition = "2024"
+description = "Light and effective data structure for fast reads."
+repository = ""
+license = "MIT"
+keywords = ["map"]
