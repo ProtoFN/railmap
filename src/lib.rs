@@ -36,20 +36,25 @@ impl<K: Ord, V> RailMap<K, V> {
     }
 
     pub fn entry<'a>(&'a mut self, key: K) -> Entry<'a, K, V> {
-        let index = self.keys.binary_search(&key);
+        let (index, exists) = match self.keys.binary_search(&key) {
+            Ok(index) => (index, true),
+            Err(index) => (index, false),
+        };
 
         Entry {
             map: self,
             index,
             key,
+            exists,
         }
     }
 }
 
 pub struct Entry<'a, K: Ord, V> {
     map: &'a mut RailMap<K, V>,
-    index: Result<usize, usize>,
+    index: usize,
     key: K,
+    exists: bool,
 }
 
 impl<'a, K: Ord, V> Entry<'a, K, V> {
@@ -69,9 +74,9 @@ impl<'a, K: Ord, V> Entry<'a, K, V> {
             map.values.insert_mut(index, func())
         }
 
-        match self.index {
-            Ok(index) => &mut self.map.values[index],
-            Err(index) => insert(self.map, index, self.key, func),
+        match self.exists {
+            true => &mut self.map.values[self.index],
+            false => insert(self.map, self.index, self.key, func),
         }
     }
 }

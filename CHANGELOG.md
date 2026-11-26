@@ -4,6 +4,12 @@ Another changelog header.
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-11-26
+
+### Changed
+
+- Improve entry layout.
+
 ## [0.1.1] - 2026-11-26
 
 ### Changed
@@ -16,6 +22,7 @@ Another changelog header.
 
 - Add `railmap`.
 
+[0.1.2]: https://github.com/ProtoFN/railmap/releases/tag/v0.1.2
 [0.1.1]: https://github.com/ProtoFN/railmap/releases/tag/v0.1.1
 [0.1.0]: https://github.com/ProtoFN/railmap/releases/tag/v0.1.0
 [@ProtoFN]: https://github.com/ProtoFN
