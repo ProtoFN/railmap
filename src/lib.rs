@@ -3,6 +3,12 @@ pub struct RailMap<K: Ord, V> {
     values: Vec<V>,
 }
 
+impl<K: Ord, V> Default for RailMap<K, V> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl<K: Ord, V> RailMap<K, V> {
     pub const fn new() -> Self {
         Self {
@@ -12,7 +18,7 @@ impl<K: Ord, V> RailMap<K, V> {
     }
 
     pub fn get(&self, key: &K) -> Option<&V> {
-        let index = self.keys.binary_search(&key);
+        let index = self.keys.binary_search(key);
 
         match index {
             Ok(index) => self.values.get(index),
@@ -21,7 +27,7 @@ impl<K: Ord, V> RailMap<K, V> {
     }
 
     pub fn get_mut(&mut self, key: &K) -> Option<&mut V> {
-        let index = self.keys.binary_search(&key);
+        let index = self.keys.binary_search(key);
 
         match index {
             Ok(index) => self.values.get_mut(index),
