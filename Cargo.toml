@@ -1,6 +1,6 @@
 [package]
 name = "railmap"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "Light and effective data structure for fast reads."
 repository = "https://github.com/ProtoFN/railmap"
