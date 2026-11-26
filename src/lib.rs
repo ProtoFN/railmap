@@ -40,23 +40,16 @@ impl<K: Ord, V> RailMap<K, V> {
 
         Entry {
             map: self,
-            index: match index {
-                Ok(index) => EntryIndex::Exists(index),
-                Err(index) => EntryIndex::Empty(index, key),
-            },
+            index,
+            key,
         }
     }
 }
 
-enum EntryIndex<K> {
-    Exists(usize),
-    Empty(usize, K),
-}
-
 pub struct Entry<'a, K: Ord, V> {
     map: &'a mut RailMap<K, V>,
-
-    index: EntryIndex<K>,
+    index: Result<usize, usize>,
+    key: K,
 }
 
 impl<'a, K: Ord, V> Entry<'a, K, V> {
@@ -77,8 +70,8 @@ impl<'a, K: Ord, V> Entry<'a, K, V> {
         }
 
         match self.index {
-            EntryIndex::Exists(index) => &mut self.map.values[index],
-            EntryIndex::Empty(index, key) => insert(self.map, index, key, func),
+            Ok(index) => &mut self.map.values[index],
+            Err(index) => insert(self.map, index, self.key, func),
         }
     }
 }

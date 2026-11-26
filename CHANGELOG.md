@@ -4,6 +4,10 @@ Another changelog header.
 
 ## [Unreleased]
 
+### Changed
+
+- Store key in entry in successful cases.
+
 ## [0.1.0] - 2026-11-26
 
 ### Added
